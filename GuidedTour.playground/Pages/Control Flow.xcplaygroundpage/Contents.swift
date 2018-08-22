@@ -19,8 +19,9 @@ print(teamScore)
 //:
 var optionalString: String? = "Hello"
 print(optionalString == nil)
-
 var optionalName: String? = "John Appleseed"
+optionalName = nil
+
 var greeting = "Hello!"
 if let name = optionalName {
     greeting = "Hello, \(name)"
@@ -33,13 +34,26 @@ if let name = optionalName {
 //:
 //: Another way to handle optional values is to provide a default value using the `??` operator. If the optional value is missing, the default value is used instead.
 //:
+/*Experiment*/
+
+
+else {
+    greeting = "Please enter your name"
+}
+
+print(greeting)
+
+
+
+
+
 let nickName: String? = nil
 let fullName: String = "John Appleseed"
 let informalGreeting = "Hi \(nickName ?? fullName)"
 
 //: Switches support any kind of data and a wide variety of comparison operations—they aren’t limited to integers and tests for equality.
 //:
-let vegetable = "red pepper"
+let vegetable = "watercress"
 switch vegetable {
     case "celery":
         print("Add some raisins and make ants on a log.")
@@ -75,6 +89,22 @@ for (kind, numbers) in interestingNumbers {
 }
 print(largest)
 
+ /*******/
+let groups = ["group1" : [3,5,2,41,0], "group2" : [34,23,5,6,7], "group3" : [4,23,43,8,10] ]
+var largestNumber = 0
+var kind = ""
+for group in groups {
+    for number in group.value {
+       print(number)
+        if number > largestNumber {
+            largestNumber = number
+            kind = group.key
+        }
+    }
+}
+print(largestNumber)
+
+print(kind)
 //: - Experiment:
 //: Add another variable to keep track of which kind of number was the largest, as well as what that largest number was.
 //:

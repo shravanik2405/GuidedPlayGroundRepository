@@ -7,6 +7,11 @@ func greet(person: String, day: String) -> String {
 }
 greet(person: "Bob", day: "Tuesday")
 
+func add(num1 : Int, num2 : Int) -> Int{
+    return num1 + num2
+}
+add(num1: 2, num2: 3)
+
 //: - Experiment:
 //: Remove the `day` parameter. Add a parameter to include today’s lunch special in the greeting.
 //:

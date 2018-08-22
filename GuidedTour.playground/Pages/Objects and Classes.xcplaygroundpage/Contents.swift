@@ -4,8 +4,16 @@
 //:
 class Shape {
     var numberOfSides = 0
+    let color : String
+    
+    init(color : String) {
+        self.color = color
+    }
     func simpleDescription() -> String {
         return "A shape with \(numberOfSides) sides."
+    }
+    func colorOfShape() -> String {
+        return "Color of the shape \(color)"
     }
 }
 
@@ -14,10 +22,11 @@ class Shape {
 //:
 //: Create an instance of a class by putting parentheses after the class name. Use dot syntax to access the properties and methods of the instance.
 //:
-var shape = Shape()
+
+var shape = Shape(color: "pink")
 shape.numberOfSides = 7
 var shapeDescription = shape.simpleDescription()
-
+shape.color
 //: This version of the `Shape` class is missing something important: an initializer to set up the class when an instance is created. Use `init` to create one.
 //:
 class NamedShape {

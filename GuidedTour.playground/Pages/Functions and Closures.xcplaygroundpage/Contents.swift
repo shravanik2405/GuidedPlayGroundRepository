@@ -7,6 +7,8 @@ func greet(person: String, day: String) -> String {
 }
 greet(person: "Bob", day: "Tuesday")
 
+
+/*****/
 func add(num1 : Int, num2 : Int) -> Int{
     return num1 + num2
 }
@@ -17,6 +19,12 @@ add(num1: 2, num2: 3)
 //:
 //: By default, functions use their parameter names as labels for their arguments. Write a custom argument label before the parameter name, or write `_` to use no argument label.
 //:
+func greetings(person : String, lunch : String) -> String{
+    return "Hello \(person), todady's special menu is \(lunch)"
+}
+greetings(person: "Ramesh", lunch: "Idli")
+
+
 func greet(_ person: String, on day: String) -> String {
     return "Hello \(person), today is \(day)."
 }
@@ -24,26 +32,48 @@ greet("John", on: "Wednesday")
 
 //: Use a tuple to make a compound value—for example, to return multiple values from a function. The elements of a tuple can be referred to either by name or by number.
 //:
-func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+//func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+//    var min = scores[0]
+//    var max = scores[0]
+//    var sum = 0
+//
+//    for score in scores {
+//        if score > max {
+//            max = score
+//        } else if score < min {
+//            min = score
+//        }
+//        sum += score
+//    }
+//
+//    return (min, max, sum)
+//}
+//let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
+//print(statistics.sum)
+//print(statistics.2)
+
+
+func calStatistics(scores :[Int]) -> (min : Int, max : Int, sum : Int)
+{
     var min = scores[0]
     var max = scores[0]
     var sum = 0
-
-    for score in scores {
-        if score > max {
+    for score in scores{
+        if score > max{
             max = score
-        } else if score < min {
+        }
+        else if score < min{
             min = score
         }
-        sum += score
+         sum = score + sum
     }
-
-    return (min, max, sum)
+   
+    return(min, max, sum)
 }
-let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
-print(statistics.sum)
-print(statistics.2)
 
+
+let answer = calStatistics(scores: [2,3,4,8,10])
+print(answer)
 //: Functions can be nested. Nested functions have access to variables that were declared in the outer function. You can use nested functions to organize the code in a function that is long or complex.
 //:
 func returnFifteen() -> Int {
@@ -58,14 +88,24 @@ returnFifteen()
 
 //: Functions are a first-class type. This means that a function can return another function as its value.
 //:
-func makeIncrementer() -> ((Int) -> Int) {
-    func addOne(number: Int) -> Int {
-        return 1 + number
+//func makeIncrementer() -> ((Int) -> Int) {
+//    func addOne(number: Int) -> Int {
+//        return 1 + number
+//    }
+//    return addOne
+//}
+//var increment = makeIncrementer()
+//increment(7)
+
+
+func makeSubstraction() -> (Int, Int) -> Int {
+    func substract(num1 : Int, num2 : Int) -> Int{
+        let value = num2 - num1
+        return value
     }
-    return addOne
+    return substract
 }
-var increment = makeIncrementer()
-increment(7)
+ makeSubstraction()(4, 2)
 
 //: A function can take another function as one of its arguments.
 //:
@@ -90,13 +130,40 @@ numbers.map({ (number: Int) -> Int in
     return result
 })
 
+
+
+
 //: - Experiment:
 //: Rewrite the closure to return zero for all odd numbers.
 //:
 //: You have several options for writing closures more concisely. When a closure’s type is already known, such as the callback for a delegate, you can omit the type of its parameters, its return type, or both. Single statement closures implicitly return the value of their only statement.
 //:
-let mappedNumbers = numbers.map({ number in 3 * number })
-print(mappedNumbers)
+/*Experiment*/
+
+numbers.map {(number : Int) -> Int in
+    
+    if number % 2 != 0 {
+        return 0
+        
+    }
+    else {
+        return 1
+    }
+}
+
+
+
+
+//let mappedNumbers = numbers.map({ number in 3 * number })
+//print(mappedNumbers)
+
+
+
+numbers.map{(number : Int) in
+    let result = number * 3
+print(result)
+}
+
 
 //: You can refer to parameters by number instead of by name—this approach is especially useful in very short closures. A closure passed as the last argument to a function can appear immediately after the parentheses. When a closure is the only argument to a function, you can omit the parentheses entirely.
 //:
